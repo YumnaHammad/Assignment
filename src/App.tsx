@@ -10,6 +10,9 @@ import { Settings } from './pages/Settings';
 import { Login } from './pages/auth/Login';
 import { Register } from './pages/auth/Register';
 
+// UI
+import { Toast } from './components/ui/Toast';
+
 // Features
 import { UsersList } from './components/features/users/UsersList';
 import { PostsList } from './components/features/posts/PostsList';
@@ -82,6 +85,7 @@ function App() {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Toast />
     </Router>
   );
 }

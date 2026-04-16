@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUsers } from '../../../hooks/useApi';
+import { useStore } from '../../../store';
 import { Card, CardContent, CardHeader, CardTitle } from '../../ui/Card';
 import { Button } from '../../ui/Button';
 import { Modal } from '../../ui/Modal';
@@ -26,7 +27,7 @@ export const UsersList: React.FC = () => {
 
   return (
     <>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredUsers.map((user) => (
           <Card key={user.id} className="transition-all hover:shadow-md hover:-translate-y-1 overflow-hidden group cursor-pointer border-border/50" onClick={() => setSelectedUser(user)}>
             <div className="h-24 bg-gradient-to-r from-primary/80 to-primary/40 relative">
@@ -73,8 +74,20 @@ export const UsersList: React.FC = () => {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-3">
                 <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Contact</h4>
+                <div className="flex items-center gap-3 group/field">
+                  <Mail className="h-4 w-4 text-primary shrink-0" />
+                  <span className="text-sm">{selectedUser.email}</span>
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText(selectedUser.email);
+                      useStore.getState().notify("Email copied to clipboard", 'success');
+                    }}
+                    className="ml-auto opacity-0 group-hover/field:opacity-100 p-1 hover:bg-primary/10 rounded transition-all text-[10px] font-bold text-primary uppercase"
+                  >
+                    Copy
+                  </button>
+                </div>
                 {[
-                  { icon: Mail, label: selectedUser.email },
                   { icon: Phone, label: selectedUser.phone },
                   { icon: Globe, label: selectedUser.website },
                 ].map(({ icon: Icon, label }) => (

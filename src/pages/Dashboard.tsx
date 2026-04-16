@@ -25,7 +25,7 @@ export const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-6 select-none cursor-default">
+    <div className="space-y-6 select-none cursor-default animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {statCards.map(({ label, value, sub, icon: Icon, color, iconBg, iconColor, border }) => (
           <Card key={label} className={`bg-gradient-to-br ${color} to-transparent transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] ${border} group overflow-hidden`}>

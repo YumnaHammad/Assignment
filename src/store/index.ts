@@ -32,6 +32,10 @@ interface AppState {
   fetchPosts: () => Promise<void>;
   fetchDashboardData: () => Promise<void>;
   
+  notification: { message: string, type: 'success' | 'error' | 'info' | null };
+  notify: (message: string, type: 'success' | 'error' | 'info') => void;
+  clearNotification: () => void;
+  
   toggleTodo: (id: number) => void;
 }
 
@@ -57,6 +61,13 @@ export const useStore = create<AppState>((set, get) => ({
 
   registeredUsers: [{ email: 'admin@nexus.com', password: 'password', name: 'Admin User' }],
 
+  notification: { message: '', type: null },
+  notify: (message, type) => {
+    set({ notification: { message, type } });
+    setTimeout(() => get().clearNotification(), 3000);
+  },
+  clearNotification: () => set({ notification: { message: '', type: null } }),
+
   login: async (email, password) => {
     // Simulated auth delay
     await new Promise(resolve => setTimeout(resolve, 800));
@@ -65,6 +76,7 @@ export const useStore = create<AppState>((set, get) => ({
     if (email === 'admin@nexus.com' && password === 'password') {
       const demoUser = get().registeredUsers.find(u => u.email === 'admin@nexus.com');
       set({ isAuthenticated: true, currentUser: demoUser });
+      get().notify("Successfully logged in as admin", 'success');
     } else {
       throw new Error("Strict Mode: Only the Demo Credentials are allowed to log in.");
     }
@@ -77,6 +89,7 @@ export const useStore = create<AppState>((set, get) => ({
 
   logout: () => {
     set({ isAuthenticated: false, currentUser: null });
+    get().notify("Logged out successfully", 'info');
   },
 
   fetchUsers: async () => {
@@ -119,10 +132,15 @@ export const useStore = create<AppState>((set, get) => ({
   },
 
   toggleTodo: (id: number) => {
-    set((state) => ({
-      todos: state.todos.map(todo => 
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    }));
+    set((state) => {
+      const isCompleting = !state.todos.find(t => t.id === id)?.completed;
+      if (isCompleting) get().notify("Task completed!", 'success');
+      
+      return {
+        todos: state.todos.map(todo => 
+          todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        )
+      };
+    });
   }
 }));

@@ -2,6 +2,11 @@
 
 A responsive admin dashboard built with React, TypeScript, and Tailwind CSS. Fetches live data from JSONPlaceholder and manages state with Zustand.
 
+## 🔗 Links
+
+- **Repository:** [GitHub](https://github.com/YumnaHammad/Assignment)
+- **Live Demo:** [Vercel Deployment](https://assignment-practice.vercel.app/login)
+
 ## Stack
 
 | Tool | Purpose |
@@ -12,6 +17,22 @@ A responsive admin dashboard built with React, TypeScript, and Tailwind CSS. Fet
 | Zustand | Global state management |
 | Axios | HTTP requests |
 | Lucide React | Icons |
+
+## Assumptions
+
+- **Auth Mocking:** Since the dummy APIs don't provide a persistent auth session, authentication is implemented as a local store state with hardcoded credentials for demo purposes.
+- **Data Scope:** Focused on JSONPlaceholder's Users, Posts, and Todos as the primary data sources to demonstrate different UI patterns (lists, grids, and task toggles).
+- **Styling:** Assumed a "Modern Native" design language was preferred, implementing global `select-none` to mimic a desktop application feel while keeping inputs interactive.
+
+## Evaluation Checklist
+
+| Criteria | Implementation Detail |
+|----------|-----------------------|
+| **UI Accuracy** | Pixel-perfect Tailwind implementation with premium hover states and smooth transitions. |
+| **API Integration** | Robust `useApi` hooks with centralized error/loading handling using Axios. |
+| **Code Quality** | Highly modular `ui/` vs `features/` structure. TypeScript strictly enforced. |
+| **State Management** | Centralized Zustand store for global search, auth, and data fetching. |
+| **Task Coverage** | Implemented search, filtering, detail modals, and task management. |
 
 ## Getting Started
 
@@ -51,11 +72,3 @@ All data comes from [JSONPlaceholder](https://jsonplaceholder.typicode.com):
 - `/posts` — Posts page
 - `/todos` — Tasks page + Dashboard widgets
 - `/albums` — Dashboard recent albums widget
-
-## Deploy
-
-Push to GitHub, import into [Vercel](https://vercel.com), set framework to **Vite** and deploy. Or run:
-
-```bash
-npx vercel
-```

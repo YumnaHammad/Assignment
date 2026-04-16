@@ -3,17 +3,28 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Bell, Shield, Key } from 'lucide-react';
+import { useStore } from '../store';
 
 export const Settings: React.FC = () => {
+  const { notify } = useStore();
+
+  const handleSave = () => {
+    notify("General settings updated successfully", 'success');
+  };
+
+  const handlePasswordUpdate = () => {
+    notify("Password has been changed", 'success');
+  };
+
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-8 mt-4">
         <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
         <p className="text-muted-foreground text-lg">Manage your account preferences and settings.</p>
       </div>
 
       <div className="grid gap-6">
-        <Card>
+        <Card className="transition-all hover:shadow-md border-border/50">
           <CardHeader>
             <CardTitle className="text-xl flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" /> General Account Settings
@@ -30,11 +41,11 @@ export const Settings: React.FC = () => {
                 <Input defaultValue="Admin User" />
               </div>
             </div>
-            <Button>Save Changes</Button>
+            <Button onClick={handleSave}>Save Changes</Button>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="transition-all hover:shadow-md border-border/50">
           <CardHeader>
             <CardTitle className="text-xl flex items-center gap-2">
               <Key className="h-5 w-5 text-primary" /> Change Password
@@ -55,7 +66,7 @@ export const Settings: React.FC = () => {
                 <Input type="password" />
               </div>
             </div>
-            <Button variant="outline">Update Password</Button>
+            <Button variant="outline" onClick={handlePasswordUpdate}>Update Password</Button>
           </CardContent>
         </Card>
 
