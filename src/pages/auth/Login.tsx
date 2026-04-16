@@ -35,7 +35,7 @@ export const Login: React.FC = () => {
             <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
             <p className="text-sm text-muted-foreground mt-1">Enter your credentials to access your account</p>
           </div>
-          <div className="bg-primary/10 border border-primary/20 rounded-md p-3 mb-6 text-sm text-primary">
+          <div className="bg-primary/10 border border-primary/20 rounded-md p-3 mb-6 text-sm text-primary select-text cursor-text">
             <strong>Demo Credentials:</strong><br />
             Email: <code>admin@nexus.com</code><br />
             Password: <code>password</code>
