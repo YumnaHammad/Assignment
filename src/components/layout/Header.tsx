@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, Search, Menu, LogOut, User, Settings as SettingsIcon } from 'lucide-react';
+import { Bell, Search, Menu, LogOut, User, Settings as SettingsIcon, LayoutDashboard } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Input } from '../ui/Input';
 import { Dropdown, DropdownItem, DropdownSeparator } from '../ui/Dropdown';
@@ -21,21 +21,29 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-border/50 bg-background/80 backdrop-blur-md px-6 shadow-sm transition-all duration-200">
-      <div className="flex flex-1 items-center gap-4">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-2 border-b border-border/50 bg-background/80 backdrop-blur-md px-4 sm:px-6 shadow-sm transition-all duration-200">
+      <div className="flex flex-1 items-center gap-2 sm:gap-4">
         <button 
           onClick={onMenuClick} 
-          className="lg:hidden p-2 -ml-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground transition-colors"
+          className="lg:hidden p-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground transition-colors shrink-0"
         >
           <Menu className="h-5 w-5" />
         </button>
+
+        {/* Mobile Logo: visible only when sidebar is hidden */}
+        <Link to="/" className="flex items-center gap-2 lg:hidden mr-2 group shrink-0">
+          <div className="bg-primary rounded-md p-1 group-hover:scale-110 transition-transform">
+            <LayoutDashboard className="h-4 w-4 text-primary-foreground" />
+          </div>
+          <span className="font-bold text-lg text-primary leading-none hidden xs:inline-block">Nexus</span>
+        </Link>
         
-        <form className="hidden sm:flex max-w-sm w-full relative group lg:w-[400px]">
+        <form className="hidden md:flex max-w-sm w-full relative group lg:w-[400px]">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <Input 
             type="search" 
-            placeholder="Search documentation, users, tasks..." 
-            className="w-full pl-9 pr-4 bg-muted/50 border-border/50 focus-visible:bg-background transition-all shadow-none hover:bg-muted/80 rounded-full" 
+            placeholder="Search..." 
+            className="w-full pl-9 pr-4 bg-muted/50 border-border/50 focus-visible:bg-background transition-all shadow-none hover:bg-muted/80 rounded-full h-9" 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

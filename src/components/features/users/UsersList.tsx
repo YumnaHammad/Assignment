@@ -27,7 +27,7 @@ export const UsersList: React.FC = () => {
 
   return (
     <>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {filteredUsers.map((user) => (
           <Card key={user.id} className="transition-all hover:shadow-md hover:-translate-y-1 overflow-hidden group cursor-pointer border-border/50" onClick={() => setSelectedUser(user)}>
             <div className="h-24 bg-gradient-to-r from-primary/80 to-primary/40 relative">

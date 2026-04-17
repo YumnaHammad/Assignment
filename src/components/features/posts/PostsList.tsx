@@ -21,7 +21,7 @@ export const PostsList: React.FC = () => {
   if (error) return <ErrorState message={error} onRetry={fetchPosts} />;
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       {filtered.map((post) => (
         <Card key={post.id} className="flex flex-col h-full border-border/40 hover:shadow-xl hover:-translate-y-1 transition-all group overflow-hidden bg-gradient-to-b from-card to-card/50">
           <div className="h-40 w-full overflow-hidden bg-muted relative">

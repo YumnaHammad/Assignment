@@ -46,10 +46,10 @@ export const Dashboard: React.FC = () => {
         ))}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
         {/* Recent Albums */}
-        <Card className="col-span-4 select-none cursor-default border-border/50 hover:shadow-md transition-all duration-300">
-          <CardHeader className="border-b border-border/40 pb-4">
+        <Card className="lg:col-span-4 select-none cursor-default border-border/50 hover:shadow-md transition-all duration-300">
+          <CardHeader className="border-b border-border/40 pb-4 px-4 sm:px-6">
             <CardTitle className="flex items-center gap-2 text-base">
               <div className="p-1.5 rounded-md bg-primary/10">
                 <BarChart3 className="h-4 w-4 text-primary" />
@@ -58,16 +58,16 @@ export const Dashboard: React.FC = () => {
               <span className="ml-auto text-xs font-normal text-muted-foreground bg-muted px-2 py-1 rounded-full">{albums.length} total</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-3">
+          <CardContent className="pt-3 px-2 sm:px-4">
             <div className="space-y-1">
               {albums.slice(0, 5).map((album, i) => (
-                <div key={album.id} className="flex items-center gap-3 rounded-lg p-3 hover:bg-muted/50 transition-all duration-200 group/item cursor-pointer">
-                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-primary font-bold text-sm shrink-0 group-hover/item:scale-105 transition-transform">
+                <div key={album.id} className="flex items-center gap-3 rounded-lg p-2 sm:p-3 hover:bg-muted/50 transition-all duration-200 group/item cursor-pointer">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-primary font-bold text-xs sm:text-sm shrink-0 group-hover/item:scale-105 transition-transform">
                     {i + 1}
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="text-sm font-medium capitalize truncate group-hover/item:text-primary transition-colors">{album.title}</h4>
-                    <span className="text-xs text-muted-foreground">Album #{album.id} · Uploaded recently</span>
+                    <span className="text-xs text-muted-foreground">Album #{album.id}</span>
                   </div>
                   <ImageIcon className="h-4 w-4 text-muted-foreground/40 group-hover/item:text-primary transition-colors shrink-0" />
                 </div>
@@ -77,8 +77,8 @@ export const Dashboard: React.FC = () => {
         </Card>
 
         {/* Task Overview */}
-        <Card className="col-span-3 select-none cursor-default border-border/50 hover:shadow-md transition-all duration-300">
-          <CardHeader className="border-b border-border/40 pb-4">
+        <Card className="lg:col-span-3 select-none cursor-default border-border/50 hover:shadow-md transition-all duration-300">
+          <CardHeader className="border-b border-border/40 pb-4 px-4 sm:px-6">
             <CardTitle className="flex items-center gap-2 text-base">
               <div className="p-1.5 rounded-md bg-green-500/10">
                 <CheckSquare className="h-4 w-4 text-green-500" />
@@ -89,7 +89,7 @@ export const Dashboard: React.FC = () => {
               </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-3">
+          <CardContent className="pt-3 px-2 sm:px-4">
             <div className="space-y-1">
               {todos.slice(0, 6).map(todo => (
                 <div key={todo.id} className={`flex items-center gap-3 p-2.5 rounded-lg transition-all duration-200 group/task ${todo.completed ? 'opacity-60' : 'hover:bg-muted/50'}`}>
@@ -103,7 +103,7 @@ export const Dashboard: React.FC = () => {
                   <p className={`text-sm flex-1 truncate ${todo.completed ? 'line-through text-muted-foreground' : 'font-medium'}`}>
                     {todo.title}
                   </p>
-                  <Badge variant={todo.completed ? 'success' : 'warning'}>
+                  <Badge variant={todo.completed ? 'success' : 'warning'} className="shrink-0">
                     {todo.completed ? 'Done' : 'Pending'}
                   </Badge>
                 </div>
